@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 // 展示平台
 import GraphPage from "@/pages/GraphPage";
 import SearchPage from "@/pages/SearchPage";
