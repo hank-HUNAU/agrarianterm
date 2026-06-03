@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+:root {
+  --color-ink: #1a1a2e;
+  --color-ink-light: #252542;
+  --color-ink-lighter: #2f2f52;
+  --color-bronze: #c9a96e;
+  --color-bronze-light: #d4b87e;
+  --color-bronze-dark: #a88a50;
+  --color-bamboo: #4a7c59;
+  --color-bamboo-light: #5a9469;
+  --color-paper: #f5f0e8;
+  --color-paper-dark: #e8e0d0;
+  --font-serif: 'Noto Serif SC', serif;
+  --font-sans: 'Noto Sans SC', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ink);
+  color: #e0dcd4;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ink-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-lighter);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bronze-dark);
+}
