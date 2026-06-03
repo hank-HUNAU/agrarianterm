@@ -33,8 +33,9 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
 }
 
 function getMockData<T>(path: string): T {
-  // 解析searchParams
-  const url = new URL(path, 'http://localhost');
+  // 解析searchParams，补全 /api 前缀
+  const fullPath = path.startsWith('/api') ? path : `/api${path}`;
+  const url = new URL(fullPath, 'http://localhost');
   const searchParams: Record<string, string> = {};
   url.searchParams.forEach((value, key) => { searchParams[key] = value; });
 
