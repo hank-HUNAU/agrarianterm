@@ -113,9 +113,13 @@ export function handleMockApi(path: string, searchParams: Record<string, string>
     const page = Number(searchParams.page) || 1;
     const size = Number(searchParams.size) || 20;
     const start = (page - 1) * size;
-    const pagedItems = items.slice(start, start + size);
+    const pagedItems = items.slice(start, start + size).map(a => ({
+      ...a,
+      source: a.task_id <= 4 ? '齐民要术' : '农政全书',
+      cultural_load: a.semantics?.culturalLoad || 0,
+    }));
 
-    return success({ total: items.length, items: pagedItems });
+    return success({ total: items.length, items: pagedItems, page, size, totalPages: Math.ceil(items.length / size) });
   }
 
   // /api/compare
