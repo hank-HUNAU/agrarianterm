@@ -78,22 +78,24 @@ export function handleMockApi(path: string, searchParams: Record<string, string>
     if (searchParams.category) annotations = annotations.filter(a => a.category === searchParams.category);
 
     const nodes = annotations.map(a => ({
-      id: String(a.id),
-      label: a.term_text,
+      id: a.id,
+      term_text: a.term_text,
       category: a.category,
       dynasty: a.task_id <= 4 ? '魏晋' : '明代',
       relationCount: mockRelations.filter(r => r.source_term_id === a.id || r.target_term_id === a.id).length,
-      modernDef: a.modern_def,
-      englishEquiv: a.english_equiv,
+      modern_def: a.modern_def,
+      english_equiv: a.english_equiv,
     }));
 
     const nodeIds = new Set(nodes.map(n => n.id));
     const edges = mockRelations
-      .filter(r => nodeIds.has(String(r.source_term_id)) && nodeIds.has(String(r.target_term_id)))
+      .filter(r => nodeIds.has(r.source_term_id) && nodeIds.has(r.target_term_id))
       .map(r => ({
-        source: String(r.source_term_id),
-        target: String(r.target_term_id),
-        type: r.relation_type,
+        id: r.id,
+        source: r.source_term_id,
+        target: r.target_term_id,
+        relation_type: r.relation_type,
+        confidence: r.confidence,
       }));
 
     return success({ nodes, edges });
